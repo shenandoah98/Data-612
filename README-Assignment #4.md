@@ -9,7 +9,9 @@ Then I explored the column names of the 2010 data and looked at the first 5 rows
 Next I explored the column names of the 2019 data and looked at the first 5 rows of this dataset.
 By looking at both of these, I realized that in the 2010 data, there was a column named 'Unnamed: 0' that wasn't in the 2019 dataset.
 
-To join the two datasets, I concatenated them and performed an inner join to keep the data from both datasets on only the columns that were in both datasets.
+To join the two datasets, I concatenated them and performed an inner join to keep the data from both datasets on only the columns that were in both datasets, using this code:
+combined = pd.concat([data_2010,data_2019], join='inner', ignore_index=True)
+I also chose to ignore the index so that the number of rows would be indexed from 0 to the total number in the dataset, rather than keeping the indexing of the two original datasets.
 
 Next I looked at the total number of rows and columns in the combined dataset.
 I also looked at the total number of rows and columns in the 2010 and 2019 dataset and counted the missing values on each as well.
@@ -18,6 +20,9 @@ Then I looked at the total number of missing values in each row on the combined 
 This also gave me a good idea of how many rows had missing values. On the 2019 dataset, there were approximately half of the rows that contained missing values. 
 
 When I dug a little deeper to see which rows had missing values, it appeared that the majority of them were because the data was suppressed. 
+I used this code to see the rows with only missing values:
+data_2019_null_data = data_2019[data_2019.isnull().any(axis=1)]
+data_2019_null_data
 In my current position, we typically suppress data that can lead to identifying particular companies or individuals. 
  
 If I were a little more familiar with the datasets and understood more aobut the variables, I would probably try to impute the missing data rather than delete it, 
