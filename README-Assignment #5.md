@@ -29,10 +29,13 @@ I also converted the Product Name column from a non-categorical type into a cate
 To Convert another column into a string type,
 I converted the Quarter column from an integer to a string using this code: 
   data_2010['Quarter'] = data_2010['Quarter'].astype(str)
+  
   And I checked to make sure the Quarter column was indeed changed to a string using this code:
   print(data_2010.dtypes)
   
   
 I also found a neat way to explore the unique counts in each column using this code:
+
 unique_counts = pd.DataFrame.from_records([(col, data_2010[col].nunique()) for col in data_2010.columns],columns=['Column_Name', 'Num_Unique']).sort_values(by=['Num_Unique'])
+
 unique_counts
